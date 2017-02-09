@@ -1,6 +1,6 @@
 puzzle = open("puzzle1.sudoku", "r")
 
-def checkRow(list,
+def checkRow(list,sadad
 
 
 
