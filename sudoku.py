@@ -41,6 +41,7 @@ x = checkRow(5)
 print(checkColumn(5,x))
 
 
+
 #for y in range(0,9):
 #    for x in range(0,9):
 #        if (sudoku[y][x]):
