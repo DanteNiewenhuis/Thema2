@@ -10,8 +10,8 @@ def checkRow(y):
 
 def makeColumn(x):
     column = []
-    for y in range(0,9):
-        column.append(sudoku[y][x])
+    for q in range(x, len(sudoku), 9):
+        column.append(sudoku[q])
     return column
 
 def checkColumn(x,pNum):
@@ -24,10 +24,11 @@ def checkColumn(x,pNum):
 sudoku = []
 for line in puzzle:
     rij = line.split(",")
-    sudoku.append(rij)
+    for coord in rij:
+        sudoku.append(coord)
 
-x = checkRow(2)
-print(checkColumn(2,x))
+print(makeColumn(0))
+
 
 #for y in range(0,9):
 #    for x in range(0,9):
