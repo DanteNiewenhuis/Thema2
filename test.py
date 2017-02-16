@@ -12,6 +12,14 @@ def processColumn(y, num):
         if num in mogelijkNum[x][y]:
             mogelijkNum[x][y].remove(num)
 
+def processBox(x, y, num):
+    boxX = int(x/3)
+    boxY = int(y/3)
+    for x in range(3*boxX, 3*boxX + 3):
+        for y in range(3*boxY, 3*boxY + 3):
+            if num in mogelijkNum[x][y]:
+                mogelijkNum[x][y].remove(num)
+
 def checkMogelijkeNum(sudoku):
     mogelijkNum = []
     for line in sudoku:
@@ -24,14 +32,32 @@ def checkMogelijkeNum(sudoku):
         mogelijkNum.append(rij)
     return mogelijkNum
 
+def isSudokuFull():
+    for x in range(0,9):
+        for y in range(0,9):
+            if sudoku[x][y] == 0:
+                return False
+    return True
+
 sudoku = readSudoku("puzzle1.sudoku")
 mogelijkNum = checkMogelijkeNum(sudoku)
 
-for x in range(0,9):
-    for y in range(0,9):
-        if len(mogelijkNum[x][y])== 1:
-            q = mogelijkNum[x][y][0]
-            mogelijkNum[x][y][0] = "x"
-            sudoku[x][y] = q
-            processRij(x, q)
-print(mogelijkNum)
+'''
+while(!isSudokuFull()):
+    for x in range(0,9):
+        for y in range(0,9):
+            if len(mogelijkNum[x][y])== 1:
+                    value = mogelijkNum[x][y][0]
+                    sudoku[x][y] = value
+                    processRij(x, value)
+                    processColumn(y, value)
+                    processBox(x, y, value)
+
+for line in mogelijkNum:
+    print(line)
+for line in sudoku:
+    print(line)
+print(openIndexCounter)
+'''
+
+
