@@ -32,25 +32,32 @@ def checkMogelijkeNum(sudoku):
         mogelijkNum.append(rij)
     return mogelijkNum
 
+def isSudokuFull():
+    for x in range(0,9):
+        for y in range(0,9):
+            if sudoku[x][y] == 0:
+                return False
+    return True
+
 sudoku = readSudoku("puzzle1.sudoku")
 mogelijkNum = checkMogelijkeNum(sudoku)
-openIndexCounter = 81
 
-while(openIndexCounter>0):
+'''
+while(!isSudokuFull()):
     for x in range(0,9):
         for y in range(0,9):
             if len(mogelijkNum[x][y])== 1:
-                if mogelijkNum[x][y] != 'x':
                     value = mogelijkNum[x][y][0]
-                    mogelijkNum[x][y][0] = "x"
                     sudoku[x][y] = value
                     processRij(x, value)
                     processColumn(y, value)
                     processBox(x, y, value)
-                    openIndexCounter -= 1
+
 for line in mogelijkNum:
     print(line)
 for line in sudoku:
     print(line)
 print(openIndexCounter)
+'''
+
 
