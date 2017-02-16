@@ -19,7 +19,6 @@ def checkMogelijkeNum(sudoku):
         for num in line:
             if(num == 0):
                 rij.append([1,2,3,4,5,6,7,8,9])
-                //heyDante
             else:
                 rij.append([num])
         mogelijkNum.append(rij)
