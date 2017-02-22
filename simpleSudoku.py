@@ -39,7 +39,7 @@ def isSudokuNotFull():
                 return True
     return False
 
-sudoku = readSudoku("puzzle4.sudoku")
+sudoku = readSudoku("puzzle1.sudoku")
 mogelijkNum = checkMogelijkeNum(sudoku)
 
 while(isSudokuNotFull()):
