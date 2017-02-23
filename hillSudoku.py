@@ -44,39 +44,36 @@ def swapNumbers(baseSudoku):
         x = random.choice(isMutableList[row])
     x2 = x
     a = sudoku[row][x1]
-    b = sudoku[row][x2]
-    sudoku[row][x1] = b
+    sudoku[row][x1] = sudoku[row][x2]
     sudoku[row][x2] = a
     return sudoku
 
 def checkColumn(x, oy, num, sudoku):
     numList = []
     for y in range(0, 9):
-        if y != oy:
-            numList.append(sudoku[y][x])
-    if num in numList:
-        return 1
-    else:
-        return 0
+        numList.append(sudoku[y][x])
+    counter = 0
+    for x in numList:
+        if (num == x):
+            counter = counter + 1
+    return counter - 1
 
-def findBox(ox, oy, boxX,boxY,sudoku):
+def findBox(ox, oy, sudoku):
     result = []
+    boxX = int(ox / 3)
+    boxY = int(oy / 3)
     for y in range (boxY*3, boxY*3 + 3):
         for x in range(boxX*3, boxX*3 + 3):
-            if ox!= x:
-                result.append(sudoku[y][x])
-            elif oy!= y:
-                result.append(sudoku[y][x])
+            result.append(sudoku[y][x])
     return result
 
 def checkBox(x, y, num, sudoku):
-    boxX = int(x / 3)
-    boxY = int(y / 3)
-    numList = findBox(x, y, boxX, boxY, sudoku)
-    if num in numList:
-        return 1
-    else:
-        return 0
+    numList = findBox(x, y, sudoku)
+    counter = 0
+    for x in numList:
+        if (num == x):
+            counter = counter + 1
+    return counter - 1
 
 def checkConflicts(sudoku):
     conflicts = 0
@@ -89,13 +86,17 @@ def checkConflicts(sudoku):
 
 baseSudoku = readSudoku("puzzle1.sudoku")
 isMutableList = makeMutableList(baseSudoku)
-#fillSudoku()
-baseSudoku = readSudoku("complete.sudoku")
+fillSudoku()
+#baseSudoku = readSudoku("complete.sudoku")
 conflictCounter = checkConflicts(baseSudoku)
 counter = 0
 print(conflictCounter)
-while(conflictCounter != 0):
+while (conflictCounter != 0):
     counter = counter + 1
+    if (counter % 500 == 0):
+        print(conflictCounter)
+    if(counter > 5000):
+        break
     newSudoku = copy.deepcopy(baseSudoku)
     newSudoku = swapNumbers(baseSudoku)
     newConflicts = checkConflicts(newSudoku)
