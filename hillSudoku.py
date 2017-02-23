@@ -88,16 +88,20 @@ def checkConflicts(sudoku):
             conflicts = conflicts + checkBox(x, y , num,sudoku)
     return conflicts
 
-sudoku = readSudoku("puzzle1.sudoku")
+sudoku = readSudoku("complete.sudoku")
 isMutableList = makeMutableList(sudoku)
 fillSudoku()
 conflictCounter = checkConflicts(sudoku)
+for row in sudoku:
+    print(row)
 print(conflictCounter)
 for i in range(0,1000):
     newSudoku = swapNumbers(sudoku)
     newConflicts = checkConflicts(newSudoku)
-    if newConflicts < conflictCounter:
+    if newConflicts <= conflictCounter:
         conflictCounter = newConflicts
         sudoku = newSudoku
 print("")
+for row in sudoku:
+    print(row)
 print(conflictCounter)

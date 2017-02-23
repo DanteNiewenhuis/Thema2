@@ -52,7 +52,11 @@ while(isSudokuNotFull()):
                     processColumn(y, value)
                     processBox(x, y, value)
 
-for line in sudoku:
-    print(line)
+with open("complete.sudoku", "w") as textfile:
+    for line in sudoku:
+        for index in line:
+            textfile.write(str(index))
+            textfile.write(",")
+        textfile.write("\n")
 
 
