@@ -25,10 +25,9 @@ def makePossibleList(sudoku):
         pList.append(posList)
     return pList
 
-def fillSudoku():
-    possableNumbers = makePossibleList(baseSudoku)
+def fillSudoku(possableNumbers):
     for x in range(0, 9):
-        posNumbers = possableNumbers[x]
+        posNumbers = copy.deepcopy(possableNumbers[x])
         for y in range(0, 9):
             if baseSudoku[x][y] == 0:
                 num = random.choice(posNumbers)
@@ -84,23 +83,30 @@ def checkConflicts(sudoku):
             conflicts = conflicts + checkBox(x, y , num, sudoku)
     return conflicts
 
-baseSudoku = readSudoku("puzzle1.sudoku")
+baseSudoku = readSudoku("puzzle3.sudoku")
 isMutableList = makeMutableList(baseSudoku)
-fillSudoku()
+possableNumbers = makePossibleList(baseSudoku)
+fillSudoku(possableNumbers)
 #baseSudoku = readSudoku("complete.sudoku")
 conflictCounter = checkConflicts(baseSudoku)
 counter = 0
 print(conflictCounter)
+for row in baseSudoku:
+    print(row)
 while (conflictCounter != 0):
     counter = counter + 1
-    if (counter % 500 == 0):
+    if(counter % 500 == 0):
         print(conflictCounter)
-    if(counter > 5000):
-        break
+    if(counter % 2000 == 0):
+        print("hoi")
+        print(conflictCounter)
+        baseSudoku = readSudoku("puzzle3.sudoku")
+        fillSudoku(possableNumbers)
+        conflictCounter = checkConflicts(baseSudoku)
     newSudoku = copy.deepcopy(baseSudoku)
     newSudoku = swapNumbers(baseSudoku)
     newConflicts = checkConflicts(newSudoku)
-    if (newConflicts < conflictCounter):
+    if (newConflicts <= conflictCounter):
         conflictCounter = newConflicts
         baseSudoku = copy.deepcopy(newSudoku)
 
