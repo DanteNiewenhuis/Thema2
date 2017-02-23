@@ -89,6 +89,7 @@ def checkConflicts(sudoku):
     return conflicts
 
 sudoku = readSudoku("complete.sudoku")
+'''
 isMutableList = makeMutableList(sudoku)
 fillSudoku()
 conflictCounter = checkConflicts(sudoku)
@@ -105,3 +106,5 @@ print("")
 for row in sudoku:
     print(row)
 print(conflictCounter)
+'''
+print(sudoku)
