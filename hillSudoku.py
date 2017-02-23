@@ -1,4 +1,5 @@
 import random
+import copy
 
 def readSudoku(name):
     with open(name, "r") as puzzle:
@@ -16,7 +17,7 @@ def makeMutableList(sudoku):
 
 def makePossibleList(sudoku):
     pList = []
-    for row in sudoku:
+    for row in baseSudoku:
         posList = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         for index in row:
             if index in posList:
@@ -25,16 +26,17 @@ def makePossibleList(sudoku):
     return pList
 
 def fillSudoku():
-    possableNumbers = makePossibleList(sudoku)
+    possableNumbers = makePossibleList(baseSudoku)
     for x in range(0, 9):
         posNumbers = possableNumbers[x]
         for y in range(0, 9):
-            if sudoku[x][y] == 0:
+            if baseSudoku[x][y] == 0:
                 num = random.choice(posNumbers)
                 posNumbers.remove(num)
-                sudoku[x][y] = num
+                baseSudoku[x][y] = num
 
-def swapNumbers(sudoku):
+def swapNumbers(baseSudoku):
+    sudoku = copy.deepcopy(baseSudoku)
     row = random.randint(0,8)
     x1 = random.choice(isMutableList[row])
     x = random.choice(isMutableList[row])
@@ -85,22 +87,23 @@ def checkConflicts(sudoku):
             conflicts = conflicts + checkBox(x, y , num, sudoku)
     return conflicts
 
-sudoku = readSudoku("puzzle1.sudoku")
-isMutableList = makeMutableList(sudoku)
-fillSudoku()
-conflictCounter = checkConflicts(sudoku)
-for row in sudoku:
-    print(row)
+baseSudoku = readSudoku("puzzle1.sudoku")
+isMutableList = makeMutableList(baseSudoku)
+#fillSudoku()
+baseSudoku = readSudoku("complete.sudoku")
+conflictCounter = checkConflicts(baseSudoku)
+counter = 0
 print(conflictCounter)
-
-for i in range(0,1000):
-    newSudoku = swapNumbers(sudoku)
+while(conflictCounter != 0):
+    counter = counter + 1
+    newSudoku = copy.deepcopy(baseSudoku)
+    newSudoku = swapNumbers(baseSudoku)
     newConflicts = checkConflicts(newSudoku)
-    if newConflicts < conflictCounter:
+    if (newConflicts < conflictCounter):
         conflictCounter = newConflicts
-        sudoku = newSudoku
+        baseSudoku = copy.deepcopy(newSudoku)
 
-print("")
-for row in sudoku:
+for row in baseSudoku:
     print(row)
 print(conflictCounter)
+print(counter)
