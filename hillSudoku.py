@@ -4,7 +4,6 @@ def readSudoku(name):
     with open(name, "r") as puzzle:
         return [[int(i) for i in line.split(",")] for line in puzzle]
 
-
 def makeMutableList(sudoku):
     mList = []
     for y in range(0, 9):
@@ -15,7 +14,6 @@ def makeMutableList(sudoku):
         mList.append(rij)
     return mList
 
-
 def makePossibleList(sudoku):
     pList = []
     for row in sudoku:
@@ -25,7 +23,6 @@ def makePossibleList(sudoku):
                 posList.remove(index)
         pList.append(posList)
     return pList
-
 
 def fillSudoku():
     possableNumbers = makePossibleList(sudoku)
@@ -62,8 +59,8 @@ def checkColumn(x, oy, num, sudoku):
 
 def findBox(ox, oy, boxX,boxY,sudoku):
     result = []
-    for y in range (boxY*3,boxY*3+3):
-        for x in range(boxX*3,boxX*3+3):
+    for y in range (boxY*3, boxY*3 + 3):
+        for x in range(boxX*3, boxX*3 + 3):
             if ox!= x:
                 result.append(sudoku[y][x])
             elif oy!= y:
@@ -73,7 +70,7 @@ def findBox(ox, oy, boxX,boxY,sudoku):
 def checkBox(x, y, num, sudoku):
     boxX = int(x / 3)
     boxY = int(y / 3)
-    numList = findBox(x, y, boxX,boxY,sudoku)
+    numList = findBox(x, y, boxX, boxY, sudoku)
     if num in numList:
         return 1
     else:
@@ -84,27 +81,26 @@ def checkConflicts(sudoku):
     for y in range(0,9):
         for x in range(0,9):
             num = sudoku[y][x]
-            conflicts = conflicts + checkColumn(x, y,num,sudoku)
-            conflicts = conflicts + checkBox(x, y , num,sudoku)
+            conflicts = conflicts + checkColumn(x, y, num, sudoku)
+            conflicts = conflicts + checkBox(x, y , num, sudoku)
     return conflicts
 
-sudoku = readSudoku("complete.sudoku")
-'''
+sudoku = readSudoku("puzzle1.sudoku")
 isMutableList = makeMutableList(sudoku)
 fillSudoku()
 conflictCounter = checkConflicts(sudoku)
 for row in sudoku:
     print(row)
 print(conflictCounter)
+
 for i in range(0,1000):
     newSudoku = swapNumbers(sudoku)
     newConflicts = checkConflicts(newSudoku)
-    if newConflicts <= conflictCounter:
+    if newConflicts < conflictCounter:
         conflictCounter = newConflicts
         sudoku = newSudoku
+
 print("")
 for row in sudoku:
     print(row)
 print(conflictCounter)
-'''
-print(sudoku)
