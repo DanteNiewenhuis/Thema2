@@ -93,23 +93,28 @@ counter = 0
 print(conflictCounter)
 for row in baseSudoku:
     print(row)
+backupCounter = 0
 while (conflictCounter != 0):
     counter = counter + 1
     if(counter % 500 == 0):
         print(conflictCounter)
-    if(counter % 2000 == 0):
-        print("hoi")
-        print(conflictCounter)
-        baseSudoku = readSudoku("puzzle3.sudoku")
-        fillSudoku(possableNumbers)
-        conflictCounter = checkConflicts(baseSudoku)
+        if(conflictCounter == 8 or conflictCounter == 4):
+            for row in baseSudoku:
+                print(row)
+    #if(counter % 2000 == 0):
+    #    print(conflictCounter)
+    #    baseSudoku = readSudoku("puzzle3.sudoku")
+    #    fillSudoku(possableNumbers)
+    #    conflictCounter = checkConflicts(baseSudoku)
     newSudoku = copy.deepcopy(baseSudoku)
     newSudoku = swapNumbers(baseSudoku)
     newConflicts = checkConflicts(newSudoku)
-    if (newConflicts <= conflictCounter):
+    if (newConflicts <= conflictCounter or backupCounter == 200):
         conflictCounter = newConflicts
         baseSudoku = copy.deepcopy(newSudoku)
-
+        backupCounter = 0
+    else:
+        backupCounter = backupCounter + 1
 for row in baseSudoku:
     print(row)
 print(conflictCounter)
