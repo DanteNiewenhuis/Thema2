@@ -4,11 +4,25 @@ def readSudoku(name):
 
 sudoku = readSudoku("puzzle1.sudoku")
 
+def check_row(place, mogelijk_num)
+    y = place[0]
+    for x in range 8
+        if 
+    return mogelijke_num
+
+def check_col(place, mogelijk_num)
+
+    return mogelijke_num
+
+def check_box(place, mogelijk_num)
+
+    return mogelijk_num
+
 def numbers_place(place)
-    for iets
-        check_row(place)
-        check_col(place)
-        check_box(place)
+    mogelijk_num = [1,2,3,4,5,6,7,8,9]
+    mogelijk_num = check_row(place, mogelijk_num)
+    mogelijk_num = check_col(place, mogelijk_num)
+    mogelijk_num = check_box(place, mogelijk_num)
     return mogelijk_num
 
 
@@ -30,7 +44,6 @@ def find_empty(sudoku)
 
 
 
-def put_number()
 
 
 def dfs(sudoku)
