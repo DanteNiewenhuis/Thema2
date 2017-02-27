@@ -17,8 +17,8 @@ def check_col(place, mogelijk_num, sudoku):
     return mogelijk_num
 
 def check_box(place, mogelijk_num, sudoku):
-    boxX = int(place[0]/3)
-    boxY = int(place[1]/3)
+    boxX = int(place[1]/3)
+    boxY = int(place[0]/3)
     for y in range(3*boxY, 3*boxY+3):
         for x in range(3*boxX, 3*boxX+3):
             if sudoku[y][x] in mogelijk_num:
@@ -54,10 +54,16 @@ def dfs(sudoku):
         mogelijk_num = numbers_place(place, sudoku)
         for number in mogelijk_num:
             sudoku[place[0]][place[1]] = number
-        #    dfs(sudoku)
-        #return False
+            for row in sudoku:
+                print(row)
+            print("")
+            dfs(sudoku)
+        if len(mogelijk_num) != 0:
+            sudoku[place[0]][place[1]] = 0
+        return False
 
 sudoku = readSudoku("puzzle1.sudoku")
 dfs(sudoku)
 for row in sudoku:
     print(row)
+#print(check_box([0,5], [1,2,3,4,5,6,7,8,9], sudoku))
