@@ -7,7 +7,7 @@ sudoku = readSudoku("puzzle1.sudoku")
 def check_row(place, mogelijk_num)
     y = place[0]
     for x in range 8
-        if 
+        if
     return mogelijke_num
 
 def check_col(place, mogelijk_num)
