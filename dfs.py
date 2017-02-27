@@ -64,7 +64,10 @@ def dfs(sudoku):
         return False
 
 sudoku = readSudoku("puzzle4.sudoku")
+import time
+start = time.time()
 dfs(sudoku)
+end = time.time()
+print(end-start)
 for row in sudoku:
     print(row)
-#print(check_box([0,5], [1,2,3,4,5,6,7,8,9], sudoku))
