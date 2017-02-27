@@ -51,18 +51,19 @@ def find_empty(sudoku):
 
 def dfs(sudoku):
         place = find_empty(sudoku)
+        if place == 0:
+            return True
         mogelijk_num = numbers_place(place, sudoku)
         for number in mogelijk_num:
             sudoku[place[0]][place[1]] = number
-            for row in sudoku:
-                print(row)
-            print("")
-            dfs(sudoku)
+            checker = dfs(sudoku)
+            if checker == True:
+                return True
         if len(mogelijk_num) != 0:
             sudoku[place[0]][place[1]] = 0
         return False
 
-sudoku = readSudoku("puzzle1.sudoku")
+sudoku = readSudoku("puzzle4.sudoku")
 dfs(sudoku)
 for row in sudoku:
     print(row)
