@@ -1,4 +1,5 @@
 import random
+import copy
 
 def readSudoku(name):
     with open(name, "r") as puzzle:
@@ -6,59 +7,98 @@ def readSudoku(name):
 
 def makeMutableList(sudoku):
     mList = []
-    for y in range(0,9):
-        mList.append([True for x in range(0,9)])
-    for y in range(0,9):
-        for x in range(0,9):
-            if (sudoku[y][x] != 0):
-                mList[y][x] = False
+    for y in range(0, 9):
+        rij = []
+        for x in range(0, 9):
+            if (sudoku[y][x] == 0):
+                rij.append(x)
+        mList.append(rij)
     return mList
 
-def makePossibleList(sudoku):
+def makePossibleList(baseSudoku):
     pList = []
-    for row in sudoku:
-        posList = [1,2,3,4,5,6,7,8,9]
+    for row in baseSudoku:
+        posList = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         for index in row:
             if index in posList:
                 posList.remove(index)
         pList.append(posList)
     return pList
 
-def fillSudoku():
-    for x in range(0,9):
-        posNumbers = possableNumbers[x]
-        for y in range(0,9):
-            if sudoku[x][y] == 0:
+def fillSudoku(possableNumbers, baseSudoku):
+    for x in range(0, 9):
+        posNumbers = copy.deepcopy(possableNumbers[x])
+        for y in range(0, 9):
+            if baseSudoku[x][y] == 0:
                 num = random.choice(posNumbers)
                 posNumbers.remove(num)
-                sudoku[x][y] = num
-def checkIndex(x,y,num):
-    mogelijkeNummers = checkColumn(x)
-    mogelijkeNummers = checkBox(x,y,mogelijkeNummers)
+                baseSudoku[x][y] = num
 
+def swapNumbers(baseSudoku, isMutableList):
+    sudoku = copy.deepcopy(baseSudoku)
+    row = random.randint(0,8)
+    x1 = random.choice(isMutableList[row])
+    x = random.choice(isMutableList[row])
+    while x == x1:
+        x = random.choice(isMutableList[row])
+    x2 = x
+    a = sudoku[row][x1]
+    sudoku[row][x1] = sudoku[row][x2]
+    sudoku[row][x2] = a
+    return sudoku
 
-def checkColumn(x):
-    result = [1,2,3,4,5,6,7,8,9]
+def checkColumn(x, oy, num, sudoku):
+    numList = []
+    for y in range(0, 9):
+        numList.append(sudoku[y][x])
+    counter = 0
+    for x in numList:
+        if (num == x):
+            counter = counter + 1
+    return counter - 1
+
+def findBox(ox, oy, sudoku):
+    result = []
+    boxX = int(ox / 3)
+    boxY = int(oy / 3)
+    for y in range (boxY*3, boxY*3 + 3):
+        for x in range(boxX*3, boxX*3 + 3):
+            result.append(sudoku[y][x])
+    return result
+
+def checkBox(x, y, num, sudoku):
+    numList = findBox(x, y, sudoku)
+    counter = 0
+    for x in numList:
+        if (num == x):
+            counter = counter + 1
+    return counter - 1
+
+def checkConflicts(sudoku):
+    conflicts = 0
     for y in range(0,9):
-        if sudoku[y][x] in result:
-            result.remove(sudoku[x][y])
+        for x in range(0,9):
+            num = sudoku[y][x]
+            conflicts = conflicts + checkColumn(x, y, num, sudoku)
+            conflicts = conflicts + checkBox(x, y , num, sudoku)
+    return conflicts
+
+def test(testAmount):
+    result = []
+    for i in range(0,100):
+        baseSudoku = readSudoku("puzzle3.sudoku")
+        isMutableList = makeMutableList(baseSudoku)
+        possableNumbers = makePossibleList(baseSudoku)
+        fillSudoku(possableNumbers, baseSudoku)
+        conflictCounter = checkConflicts(baseSudoku)
+        for x in range(0,testAmount):
+            newSudoku = copy.deepcopy(baseSudoku)
+            newSudoku = swapNumbers(baseSudoku, isMutableList)
+            newConflicts = checkConflicts(newSudoku)
+
+            if (newConflicts <= conflictCounter):
+                conflictCounter = newConflicts
+                baseSudoku = copy.deepcopy(newSudoku)
+        result.append(conflictCounter)
+        print(conflictCounter)
     return result
-
-def checkBox(x,y, mogelijkeNummers):
-    boxX = x/3
-    boxY = y/3
-    return result
-
-sudoku = readSudoku("puzzle1.sudoku")
-isMutableList = makeMutableList(sudoku)
-possableNumbers = makePossibleList(sudoku)
-for row in sudoku:
-    print(row)
-fillSudoku()
-#for rij in isMutableList:
-#    print(rij)
-print("")
-for row in sudoku:
-    print(row)
-
-print(checkColumn(2))
