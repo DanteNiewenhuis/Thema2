@@ -44,9 +44,12 @@ mogelijkNum = checkMogelijkeNum(sudoku)
 
 while(isSudokuNotFull()):
     for x in range(0,9):
+        print(x)
         for y in range(0,9):
+            print(y)
             if len(mogelijkNum[x][y])== 1:
                     value = mogelijkNum[x][y][0]
+                    print(value)
                     sudoku[x][y] = value
                     processRij(x, value)
                     processColumn(y, value)
