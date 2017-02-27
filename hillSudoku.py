@@ -83,22 +83,33 @@ def checkConflicts(sudoku):
             conflicts = conflicts + checkBox(x, y , num, sudoku)
     return conflicts
 
-def test(testAmount):
-    result = []
-    for i in range(0,100):
-        baseSudoku = readSudoku("puzzle3.sudoku")
-        isMutableList = makeMutableList(baseSudoku)
-        possableNumbers = makePossibleList(baseSudoku)
-        fillSudoku(possableNumbers, baseSudoku)
-        conflictCounter = checkConflicts(baseSudoku)
-        for x in range(0,testAmount):
-            newSudoku = copy.deepcopy(baseSudoku)
-            newSudoku = swapNumbers(baseSudoku, isMutableList)
-            newConflicts = checkConflicts(newSudoku)
+def run_hillclimber():
+    baseSudoku = readSudoku("puzzle3.sudoku")
+    isMutableList = makeMutableList(baseSudoku)
+    possableNumbers = makePossibleList(baseSudoku)
+    fillSudoku(possableNumbers, baseSudoku)
+    conflictCounter = checkConflicts(baseSudoku)
+    current_conflicts = conflictCounter
+    counter = 0
+    backup_counter = 0
+    while(conflictCounter != 0):
+        if(counter % 200 == 0):
+            print(conflictCounter)
+            if current_conflicts == conflictCounter:
+                baseSudoku = readSudoku("puzzle3.sudoku")
+                isMutableList = makeMutableList(baseSudoku)
+                possableNumbers = makePossibleList(baseSudoku)
+                fillSudoku(possableNumbers, baseSudoku)
+                conflictCounter = checkConflicts(baseSudoku)
+                current_conflicts = conflictCounter
+            else:
+                current_conflicts = conflictCounter
+        newSudoku = swapNumbers(baseSudoku, isMutableList)
+        newConflicts = checkConflicts(newSudoku)
 
-            if (newConflicts <= conflictCounter):
-                conflictCounter = newConflicts
-                baseSudoku = copy.deepcopy(newSudoku)
-        result.append(conflictCounter)
-        print(conflictCounter)
-    return result
+        if (newConflicts <= conflictCounter or backup_counter == 100):
+            conflictCounter = newConflicts
+            baseSudoku = copy.deepcopy(newSudoku)
+        counter += 1
+    for row in baseSudoku:
+        print(row)
