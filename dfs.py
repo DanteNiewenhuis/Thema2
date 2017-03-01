@@ -65,9 +65,9 @@ def dfs(sudoku):
 
 sudoku = readSudoku("puzzle4.sudoku")
 import time
-start = time.time()
+#start = time.time()
 dfs(sudoku)
-end = time.time()
-print(end-start)
+#end = time.time()
+#print(end-start)
 for row in sudoku:
     print(row)
