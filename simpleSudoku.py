@@ -39,27 +39,23 @@ def isSudokuNotFull():
                 return True
     return False
 
-sudoku = readSudoku("puzzle1.sudoku")
+import time
+start = time.time()
+sudoku = readSudoku("puzzle3.sudoku")
 mogelijkNum = checkMogelijkeNum(sudoku)
 
 while(isSudokuNotFull()):
     for x in range(0,9):
-        print(x)
         for y in range(0,9):
-            print(y)
             if len(mogelijkNum[x][y])== 1:
                     value = mogelijkNum[x][y][0]
-                    print(value)
                     sudoku[x][y] = value
                     processRij(x, value)
                     processColumn(y, value)
                     processBox(x, y, value)
-
-with open("complete.sudoku", "w") as textfile:
-    for line in sudoku:
-        for index in line:
-            textfile.write(str(index))
-            textfile.write(",")
-        textfile.write("\n")
+end = time.time()
+print(end-start)
+for row in sudoku:
+    print(row)
 
 

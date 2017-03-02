@@ -57,17 +57,20 @@ def dfs(sudoku):
         for number in mogelijk_num:
             sudoku[place[0]][place[1]] = number
             checker = dfs(sudoku)
-            if checker == True:
+            if checker:
                 return True
         if len(mogelijk_num) != 0:
             sudoku[place[0]][place[1]] = 0
         return False
 
-sudoku = readSudoku("puzzle4.sudoku")
 import time
-#start = time.time()
-dfs(sudoku)
-#end = time.time()
-#print(end-start)
-for row in sudoku:
-    print(row)
+start = time.time()
+for x in range(1,7):
+    sudoku = readSudoku("puzzle"+ str(x) +".sudoku")
+    dfs(sudoku)
+
+    for row in sudoku:
+        print(row)
+    print("")
+end = time.time()
+print(end-start)
