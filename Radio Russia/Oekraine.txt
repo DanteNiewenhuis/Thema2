@@ -1,4 +1,3 @@
-Oekraïne
 sA,sD,sB
 sB,sA,sD,sE,sF,sC
 sC,sB,sF
