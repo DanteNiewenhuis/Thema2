@@ -18,5 +18,11 @@ def make_adjecent_states(data, states):
             counter++
     return states
 
-x = readStates("Oekraine.txt")
+def readCost(name):
+    with open(name, "r") as cost_table:
+        return [[int(i) for i in line.split(",")] for line in cost_table]
 
+
+x = readStates("Oekraine.txt")
+cost_table = readCost("kosten.txt")
+cost_type = 0
