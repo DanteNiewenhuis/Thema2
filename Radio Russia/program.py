@@ -25,7 +25,8 @@ def find_state(name, states):
         if(state.name == name):
             return state
 
-x = readStates("Oekraine.txt")
-for state in x:
-    print(state)
-    print(state.adjacent_states)
+if __name__ == "__main__":
+    x = readStates("Oekraine.txt")
+    for state in x:
+        print(state)
+        print(state.adjacent_states)
