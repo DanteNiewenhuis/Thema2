@@ -1,0 +1,1 @@
+def signal_frequentie(map):
