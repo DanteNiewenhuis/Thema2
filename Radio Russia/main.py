@@ -2,14 +2,12 @@ import readMap
 import dfs
 import analyse
 
-map = readMap.readStates("Oekraine.txt")
+map = readMap.readStates("UnitedStates.txt")
 print(analyse.analyse_adjacent_states(map))
 signals = ['zA', 'zB', 'zC', 'zD']
 dfs.dfs(map, signals)
-#for state in map:
-#    print(state)
-#    print(state.adjacent_states)
-#    print(state.signal)
+for state in map:
+    print(str(state) + ' = ' + str(state.signal))
 
 print("analyse: ")
 print(analyse.analyse_conflicts(map))
