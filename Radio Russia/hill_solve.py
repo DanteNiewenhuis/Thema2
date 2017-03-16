@@ -1,12 +1,23 @@
 import program
 
+map = program.readStates("Oekraine.txt")
+signals = [zA,zB,zC,zD,zE]
 
-states = program.readStates("Oekraine.txt")
-print(states)
-""""
 def find_empty(map):
+    for state in map:
+        if(state.adjacent_states == [])
+            return state
+        else
+            return 1
+            #something to stop
 
-    return state
+def set_signal(empty_state)
+    possible_signals = signals
+    for state in empty_state.adjacent_states:
+        if state.signal in signals
+            possible_signals.remove(state.signal)
+
+
 
 def fill_in(empty_state):
     ##not_adjacent?
@@ -15,5 +26,5 @@ def fill_in(empty_state):
 
 def run_hill():
     empty_state = find_empty(map)
-    empty_state.
-"""
+    set_signal(empty_state)
+
