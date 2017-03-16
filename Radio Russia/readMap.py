@@ -22,7 +22,7 @@ def make_adjecent_states(data, states):
 
 def find_state(name, states):
     for state in states:
-        if(state.name == name):
+        if(state.code == name):
             return state
 
 if __name__ == "__main__":
