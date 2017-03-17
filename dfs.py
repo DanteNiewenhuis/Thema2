@@ -75,15 +75,12 @@ def dfs(sudoku):
         return False
 
 #choose sudoku file
-sudoku = readSudoku("puzzle4.sudoku")
-import time
-#start = time.time()
+for x in range(1,7):
+    print("puzzle "+str(x)+":")
+    sudoku = readSudoku("puzzle"+str(x)+".sudoku")
+    dfs(sudoku)
 
-#run depth first search
-dfs(sudoku)
-#end = time.time()
-#print(end-start)
-
-#print sudoku
-for row in sudoku:
-    print(row)
+    #print sudoku
+    for row in sudoku:
+        print(row)
+    print("")
