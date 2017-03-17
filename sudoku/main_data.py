@@ -1,6 +1,6 @@
-import hillSudoku
 import time
-import read_data
+
+from sudoku import hillSudoku
 
 #for amount in [100,200,300,400,500,750,1000]:
 #    list = hillSudoku.test(amount)
