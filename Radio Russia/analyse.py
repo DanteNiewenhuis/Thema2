@@ -25,3 +25,10 @@ def analyse_adjacent_states(map):
             if state not in adjacent_state.adjacent_states:
                 return 'fout in kaart: geen ' + state.name + ' in ' + adjacent_state.name
     return 'geen fout in kaart'
+
+def get_cost(freqencies, costs):
+    result = 0
+    for signal in freqencies:
+        cost = freqencies[signal] * costs[signal]
+        result += cost
+    return result
