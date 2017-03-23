@@ -2,6 +2,7 @@ import random
 import dfs
 import analyse
 import math
+#import matplotlib.pyplot as plt
 
 def revert_changes(swapped_state):
     state = swapped_state[0]
@@ -16,24 +17,35 @@ def swap_state(map, signals):
     return [swapped_state, old_signal]
 
 def hill_climber(map, costs, signals):
+    #plot = []
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
     for x in range(1,1000):
+        #plot.append(old_costs)
         checker = 0
-        temperature = 100/x
+        temperature = 200-0.5*x
+        if temperature <= 0:
+            temperature = 1
         swapped_state = swap_state(map, signals)
         new_freq = analyse.signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
         improvement = old_costs - new_costs
         try:
             chance = math.exp(improvement/temperature)
+            if chance > 1:
+                chance = 1
         except OverflowError:
             chance = 0
-        print(chance)
         if random.random() < chance:
             checker = 1
-        if new_costs <= old_costs or checker == 1:
+        if checker == 1:
             old_costs = new_costs
         else:
             revert_changes(swapped_state)
+    '''
+    plt.plot(plot)
+    plt.ylabel('kosten')
+    plt.xlabel('iteraties')
+    plt.show()
+    '''
     return map

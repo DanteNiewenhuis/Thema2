@@ -8,21 +8,19 @@ map = readMap.readStates("Oekraine.txt")
 print(analyse.analyse_adjacent_states(map))
 signals = ['zA', 'zB', 'zC', 'zD', 'zE', 'zF', 'zG']
 costs = {'zA':12, 'zB':26, 'zC':27, 'zD':30, 'zE':37, 'zF':39, 'zG':41}
-dfs.dfs(map, signals)
-#for state in map:
-#    print(str(state) + ' = ' + str(state.signal))
 
-print("analyse: ")
+dfs.dfs(map, signals)
 print(analyse.analyse_conflicts(map))
 freq = analyse.signal_frequentie(map)
 list_freq = freq.keys()
 for signal in sorted(list_freq):
-    print(signal, freq[signal])
-
+    print(str(signal) + ' = ' + str(freq[signal]))
 print(analyse.get_cost(freq, costs))
-sim_an_search.hill_climber(map, costs, signals)
+
+hill_solve.hill_climber(map, costs, signals)
 freq = analyse.signal_frequentie(map)
 list_freq = freq.keys()
 for signal in sorted(list_freq):
-    print(signal, freq[signal])
+    print(str(signal) + ' = ' + str(freq[signal]))
 print(analyse.get_cost(freq, costs))
+
