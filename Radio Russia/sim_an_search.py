@@ -1,23 +1,8 @@
 import random
 import dfs
 import analyse
+import math
 
-'''
-states = program.readStates("Oekraine.txt")
-print(states)
-def find_empty(map):
-
-    return state
-
-def fill_in(empty_state):
-    ##not_adjacent?
-    ##minst gebruikte zender heeft voorkeur
-
-
-def run_hill():
-    empty_state = find_empty(map)
-    empty_state.
-'''
 def revert_changes(swapped_state):
     state = swapped_state[0]
     state.signal = swapped_state[1]
@@ -33,11 +18,21 @@ def swap_state(map, signals):
 def hill_climber(map, costs, signals):
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
-    for x in range(1000):
+    for x in range(1,1000):
+        checker = 0
+        temperature = 100/x
         swapped_state = swap_state(map, signals)
         new_freq = analyse.signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
-        if new_costs <= old_costs:
+        improvement = old_costs - new_costs
+        try:
+            chance = math.exp(improvement/temperature)
+        except OverflowError:
+            chance = 0
+        print(chance)
+        if random.random() < chance:
+            checker = 1
+        if new_costs <= old_costs or checker == 1:
             old_costs = new_costs
         else:
             revert_changes(swapped_state)
