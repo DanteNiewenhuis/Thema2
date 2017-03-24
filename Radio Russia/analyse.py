@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 def signal_frequentie(map):
     result = {}
     for state in map:
@@ -43,3 +46,19 @@ def get_frequencies_costs(list):
         else:
             dic[cost] = 1
     return dic
+
+
+def bar_plot(dic):
+    objects = sorted(dic.keys())
+    performance = []
+    for object in objects:
+        performance.append(dic[object])
+
+    y_pos = np.arange(len(objects))
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Costs')
+    plt.title('Frequentie van Costs')
+
+    plt.show()
