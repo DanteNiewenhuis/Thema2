@@ -1,7 +1,7 @@
 import random
 import dfs
 import analyse
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def revert_changes(swapped_state):
     state = swapped_state[0]

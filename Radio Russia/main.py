@@ -17,6 +17,7 @@ for signal in sorted(list_freq):
     print(str(signal) + ' = ' + str(freq[signal]))
 print(analyse.get_cost(freq, costs))
 
+
 hill_solve.hill_climber(map, costs, signals)
 freq = analyse.signal_frequentie(map)
 list_freq = freq.keys()
