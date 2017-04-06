@@ -21,35 +21,23 @@ def sigmodial_temperature(begin, end, n, x):
     temperature = begin * math.exp(-a*(x**2))
     return temperature
 
-def hill_climber(map, costs, signals):
-    n = 10
-    begin_temp = 1
-    end_temp = 0.001
+def hill_climber(map, costs, signals, n, begin_temp, end_temp):
     #plot = []
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
     for x in range(n):
+        temperature = sigmodial_temperature(begin_temp, end_temp, n, x)
         for y in range(100):
-            checker = 0
-            temperature = sigmodial_temperature(begin_temp, end_temp, n, x)
-            if temperature <= 0:
-                temperature = 1
+            #plot.append(old_costs)
             swapped_state = swap_state(map, signals)
             new_freq = analyse.signal_frequentie(map)
             new_costs = analyse.get_cost(new_freq, costs)
             improvement = old_costs - new_costs
             try:
                 chance = math.exp(improvement/temperature)
-                if chance > 1:
-                    chance = 1
-                #if chance > 1:
-                    #print('temp = ' + str(temperature) + ' imp = '+ str(improvement) + ' chance = '+ str(chance))
-                #plot.append(temperature)
             except OverflowError:
                 chance = 0
             if random.random() < chance:
-                checker = 1
-            if checker == 1:
                 old_costs = new_costs
             else:
                 revert_changes(swapped_state)
@@ -58,7 +46,6 @@ def hill_climber(map, costs, signals):
     plt.plot(plot)
     plt.ylabel('temp')
     plt.xlabel('iteraties')
-    #plt.axis([0,1000,400,1000])
     plt.show()
     '''
     return map
