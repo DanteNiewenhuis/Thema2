@@ -51,14 +51,27 @@ def get_frequencies_costs(list):
 def bar_plot(dic):
     objects = sorted(dic.keys())
     performance = []
-    for object in objects:
-        performance.append(dic[object])
+    for x in range(650, 850):
+        if x in objects:
+            performance.append(dic[x])
+        else:
+            performance.append(0)
 
-    y_pos = np.arange(len(objects))
 
-    plt.bar(y_pos, performance, align='center', alpha=0.5)
-    plt.xticks(y_pos, objects)
-    plt.ylabel('Costs')
-    plt.title('Frequentie van Costs')
+    y_pos = np.arange(650, 850)
+    width = 1
 
+    ax = plt.subplot(111)
+    ax.bar(y_pos + width, performance)
+
+    # Hide the right and top spines
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+
+    # Only show ticks on the left and bottom spines
+    ax.yaxis.set_ticks_position('left')
+    ax.xaxis.set_ticks_position('bottom')
+
+    ax.set_xticklabels([])
+    ax.set_xticks(y_pos + width / 2)
     plt.show()
