@@ -16,7 +16,7 @@ costs = {'zA':12, 'zB':26, 'zC':27, 'zD':30, 'zE':37, 'zF':39, 'zG':41}
 
 dfs.dfs(map, signals)
 
-sim_an_search.hill_climber(map, costs, signals, 30, 20, 0.01)
+sim_an_search.hill_climber(map, costs, signals, 500, 5, 0.01)
 freq = analyse.signal_frequentie(map)
 hill_costs = analyse.get_cost(freq, costs)
 if hill_costs < best_costs:

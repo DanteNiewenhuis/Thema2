@@ -1,8 +1,8 @@
 class State(object):
 
-    def __init__(self, code):
+    def __init__(self, name, code):
         self.code = code
-        self.name = code
+        self.name = name
         self.adjacent_states = []
         self.signal = 0
 

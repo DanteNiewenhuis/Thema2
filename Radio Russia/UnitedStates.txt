@@ -1,48 +1,48 @@
-s1,s2,s5
-s2,s1,s3,s4,s5
-s3,s2,s4,s7
-s4,s2,s3,s5,s6,s7
-s5,s1,s2,s4,s6,s8,s9
-s6,s4,s5,s7,s9,s10,s11
-s7,s3,s4,s6,s10,s11
-s8,s5,s9,s12,s13
-s9,s5,s6,s8,s10,s13,s14
-s10,s6,s7,s9,s11,s14,s15,s16
-s11,s6,s7,s10,s16,s17
-s12,s8,s13,s18
-s13,s8,s9,s12,s14,s18,s19
-s14,s9,s10,s13,s15,s19,s20
-s15,s10,s14,s16,s20
-s16,s10,s11,s15,s17,s20,s21
-s17,s11,s16,s21,s22
-s18,s12,s13,s19,s23
-s19,s13,s14,s18,s20,s23,s24
-s20,s14,s15,s16,s19,s21,s24,s25,s26
-s21,s16,s17,s20,s22,s26,s27
-s22,s17,s21,s27
-s23,s18,s19,s24,s28
-s24,s19,s20,s23,s25,s28,s29
-s25,s20,s24,s26,s29,s30,s33,s34
-s26,s20,s21,s25,s27,s31,s34,s35,s37
-s27,s21,s22,s26,s31
-s28,s23,s24,s29,s30
-s29,s24,s25,s28,s30
-s30,s25,s28,s29,s33,s46
-s31,s26,s27,s32,s37
-s32,s31,s37
-s33,s25,s30,s34,s46,s48
-s34,s25,s26,s33,s35,s48
-s35,s26,s34,s36,s37
-s36,s35,s37
-s37,s26,s31,s32,s35,s36
-s38,s39
-s39,s38,s40,s42
-s40,s39,s41,s42
-s41,s40,s42,s43,s44,s45,s46
-s42,s39,s40,s41,s43,s44
-s43,s41,s42,s44
-s44,s41,s42,s43
-s45,s41,s46,s47
-s46,s30,s33,s41,s45,s47,s48
-s47,s45,s46,s48
-s48,s33,s34,s46,s47
+Washington,s1,s2,s5
+Oregon,s2,s1,s3,s4,s5
+California,s3,s2,s4,s7
+Nevada,s4,s2,s3,s5,s6,s7
+Idaho,s5,s1,s2,s4,s6,s8,s9
+Utah,s6,s4,s5,s7,s9,s10,s11
+Arizona,s7,s3,s4,s6,s10,s11
+Montana,s8,s5,s9,s12,s13
+Wyoming,s9,s5,s6,s8,s10,s13,s14
+Colorado,s10,s6,s7,s9,s11,s14,s15,s16
+New Mexico,s11,s6,s7,s10,s16,s17
+North Dakota,s12,s8,s13,s18
+South Dakota,s13,s8,s9,s12,s14,s18,s19
+Nebraska,s14,s9,s10,s13,s15,s19,s20
+Kansas,s15,s10,s14,s16,s20
+Oklahoma,s16,s10,s11,s15,s17,s20,s21
+Texas,s17,s11,s16,s21,s22
+Minnesota,s18,s12,s13,s19,s23
+Iowa,s19,s13,s14,s18,s20,s23,s24
+Missouri,s20,s14,s15,s16,s19,s21,s24,s25,s26
+Arkansas,s21,s16,s17,s20,s22,s26,s27
+Louisiana,s22,s17,s21,s27
+Wisconsin,s23,s18,s19,s24,s28
+Illinois,s24,s19,s20,s23,s25,s28,s29
+Kentucky,s25,s20,s24,s26,s29,s30,s33,s34
+Tennessee,s26,s20,s21,s25,s27,s31,s34,s35,s37
+Mississippi,s27,s21,s22,s26,s31
+Michigan,s28,s23,s24,s29,s30
+Indiana,s29,s24,s25,s28,s30
+Ohio,s30,s25,s28,s29,s33,s46
+Alabama,s31,s26,s27,s32,s37
+Florida,s32,s31,s37
+West Virginia,s33,s25,s30,s34,s46,s48
+Virginia,s34,s25,s26,s33,s35,s48
+North Carolina,s35,s26,s34,s36,s37
+South Carolina,s36,s35,s37
+Georgia,s37,s26,s31,s32,s35,s36
+Maine,s38,s39
+New Hampshire,s39,s38,s40,s42
+Vermont,s40,s39,s41,s42
+New York,s41,s40,s42,s43,s44,s45,s46
+Massachusetts,s42,s39,s40,s41,s43,s44
+Connecticut,s43,s41,s42,s44
+Rhode Island,s44,s41,s42,s43
+New Jersey,s45,s41,s46,s47
+Pennsylvania,s46,s30,s33,s41,s45,s47,s48
+Delaware,s47,s45,s46,s48
+Maryland,s48,s33,s34,s46,s47
