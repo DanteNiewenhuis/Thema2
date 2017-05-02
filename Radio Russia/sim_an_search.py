@@ -23,6 +23,16 @@ def linear_temperature(begin, end, n ,x):
     return temperature
 
 def sigmoidal_temperature(begin, end, n, x):
+    a = (1/n) * math.log(begin/end)
+    temperature = begin * math.exp(-a*x)
+    return temperature
+
+def sigmoidal_temperature_2(begin, end, n, x):
+    a = (1/(n**2)) * math.log(begin/end)
+    temperature = begin * math.exp(-a*(x**2))
+    return temperature
+
+def sigmoidal_temperature_3(begin, end, n, x):
     a = (1/(n**3)) * math.log(begin/end)
     temperature = begin * math.exp(-a*(x**3))
     return temperature
@@ -40,7 +50,7 @@ def double_sigmoidal_temperature(begin, end, n, x):
     return temperature
 
 def sinus_sigmoidal_temperature(begin, end, n, x):
-    temperature = sigmoidal_temperature(begin, end, n, x)
+    temperature = sigmoidal_temperature_3(begin, end, n, x)
     temperature += begin * 0.05 * math.sin(1/800*x)
     if temperature < 0:
         temperature = end
@@ -66,8 +76,8 @@ def sinus_temperature(begin, end, n, x):
 
 def sinusception_temperature(begin, end, n, x):
     temperature = sinus_temperature(begin, end, n, x)
-    temperature += begin * 0.2 * math.sin(1/400*x)
-    temperature += begin * 0.05 * math.sin(1 / 800 * x)
+    temperature += begin * 0.2 * math.sin(1/400 * x)
+    temperature += begin * 0.05 * math.sin(1/800 * x)
     if temperature < 0:
         temperature = end
     return temperature
@@ -79,7 +89,7 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
     lowest_cost = old_costs
     lowest_map = copy.deepcopy(map)
     for x in range(n):
-        temperature = double_sigmoidal_temperature(begin_temp, end_temp, n, x)
+        temperature = sinusception_temperature(begin_temp, end_temp, n, x)
         plot.append(old_costs)
         swapped_state = swap_state(map, signals)
         new_freq = analyse.signal_frequentie(map)
@@ -100,7 +110,8 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
     print(lowest_cost)
     print(old_costs)
     plt.plot(plot)
-    plt.ylabel('temp')
+    plt.ylabel('costs')
     plt.xlabel('iteraties')
+    plt.axis([-100,210000,900,1350])
     plt.show()
     return lowest_map

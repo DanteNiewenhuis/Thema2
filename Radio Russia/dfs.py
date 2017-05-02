@@ -41,7 +41,7 @@ def dfs(map, signals):
     if state == 0:
         return True
     possible_signal = possible_signals(signals, state)
-    #possible_signal = reorder_possible_signals(possible_signal, amount_dic)
+    possible_signal = reorder_possible_signals(possible_signal, amount_dic)
     for signal in possible_signal:
         state.signal = signal
         checker = dfs(map, signals)
