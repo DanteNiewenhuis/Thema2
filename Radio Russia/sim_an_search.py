@@ -89,7 +89,7 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
     lowest_cost = old_costs
     lowest_map = copy.deepcopy(map)
     for x in range(n):
-        temperature = sinusception_temperature(begin_temp, end_temp, n, x)
+        temperature = linear_temperature(begin_temp, end_temp, n, x)
         plot.append(old_costs)
         swapped_state = swap_state(map, signals)
         new_freq = analyse.signal_frequentie(map)
