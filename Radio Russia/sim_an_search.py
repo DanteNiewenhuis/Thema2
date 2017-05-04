@@ -89,8 +89,8 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
     lowest_cost = old_costs
     lowest_map = copy.deepcopy(map)
     for x in range(n):
-        temperature = sinusception_temperature(begin_temp, end_temp, n, x)
-        plot.append(old_costs)
+        temperature = sinus_double_sigmoidal_temperature(begin_temp, end_temp, n, x)
+        #plot.append(old_costs)
         swapped_state = swap_state(map, signals)
         new_freq = analyse.signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
@@ -106,14 +106,14 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
         if old_costs < lowest_cost:
             lowest_cost = old_costs
             lowest_map = copy.deepcopy(map)
-    print(temperature)
+    '''print(temperature)
     print(lowest_cost)
     print(old_costs)
     plt.plot(plot)
     plt.ylabel('costs')
     plt.xlabel('iteraties')
     plt.axis([-100,210000,900,1350])
-    plt.show()
+    plt.show()'''
     return lowest_map
 
 def stats_climber(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
@@ -148,4 +148,4 @@ def stats_climber(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
     plt.xlabel('iteraties')
     plt.axis([-100,210000,900,1350])
     plt.show()'''
-    return lowest_map
+    return map
