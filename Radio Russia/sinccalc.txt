@@ -1,0 +1,1 @@
+sinus_sigmoidal_temperature: avg: 976.81 - low: 965 - high: 999

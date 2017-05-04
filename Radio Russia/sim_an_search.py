@@ -120,8 +120,8 @@ def stats_climber(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
     #plot = []
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
-    lowest_cost = old_costs
-    lowest_map = copy.deepcopy(map)
+    #lowest_cost = old_costs
+    #lowest_map = copy.deepcopy(map)
     for x in range(n):
         temperature = heatalgorithm(begin_temp, end_temp, n, x)
         #plot.append(old_costs)
@@ -137,9 +137,9 @@ def stats_climber(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
             old_costs = new_costs
         else:
             revert_changes(swapped_state)
-        if old_costs < lowest_cost:
-            lowest_cost = old_costs
-            lowest_map = copy.deepcopy(map)
+        #if old_costs < lowest_cost:
+         #   lowest_cost = old_costs
+          #  lowest_map = copy.deepcopy(map)
     '''print(temperature)
     print(lowest_cost)
     print(old_costs)
