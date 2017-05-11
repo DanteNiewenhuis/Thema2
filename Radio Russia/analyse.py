@@ -42,3 +42,8 @@ def get_cost_scheme(number):
         4:{'zA': 3, 'zB': 34, 'zC': 36, 'zD': 39, 'zE': 41, 'zF': 43, 'zG': 58},
     }
     return switcher.get(number, 'please give a scheme between 1 and 4')
+
+def print_costs(map, signal_costs, print_before='', print_after=''):
+    freq = signal_frequentie(map)
+    costs = get_cost(freq, signal_costs)
+    print(str(print_before) + str(costs) + str(print_after))

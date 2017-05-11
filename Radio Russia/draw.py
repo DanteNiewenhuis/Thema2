@@ -75,7 +75,7 @@ def draw_america(input, signal_costs):
     plt.show()
 
 #based on https://pythonspot.com/en/matplotlib-bar-chart/
-def bar_plot(dict, title, x_label, y_label):
+def bar_plot(dict, x_label='x-as', y_label='y-as', title='title'):
     objects = (dict.keys())
     y_pos = np.arange(len(objects))
     performance = [dict[x] for x in objects]
@@ -86,4 +86,18 @@ def bar_plot(dict, title, x_label, y_label):
     plt.xlabel(x_label)
     plt.title(title, fontsize=20)
 
+    plt.show()
+
+def line_plot(list, x_label='x-as', y_label='y-as', title='title', y_min='x', y_max='x', x_max='x', x_min = 0):
+    plt.plot(list)
+    plt.ylabel(y_label)
+    plt.xlabel(x_label)
+    plt.title(title, fontsize=20)
+    if y_min == 'x':
+        y_min = min(list) - 0.1*min(list)
+    if y_max == 'x':
+        y_max = max(list) + 0.1 * max(list)
+    if x_max == 'x':
+        x_max = len(list) + 0.1 * len(list)
+    plt.axis([x_min, x_max, y_min, y_max])
     plt.show()

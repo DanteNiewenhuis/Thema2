@@ -39,8 +39,11 @@ def make_adjecent_states(data, states):
     counter = 0
     with open(data, 'r') as info:
         for state in info:
+            state = state.strip('\n')
             split_state = state.split(',')
             for adjecent_state in split_state[2:]:
+                if adjecent_state == '':
+                    continue
                 adjecent_state = find_state(adjecent_state.rstrip(), states)
                 states[counter] += adjecent_state
             counter += 1
