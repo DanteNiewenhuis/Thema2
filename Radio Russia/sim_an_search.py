@@ -87,8 +87,8 @@ def sim_an(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
     map_list = []
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
-    lowest_cost = old_costs
-    lowest_map = copy.deepcopy(map)
+    #lowest_cost = old_costs
+    #lowest_map = copy.deepcopy(map)
     for x in range(n):
         map_list.append(map)
         temperature = heatalgorithm(begin_temp, end_temp, n, x)
@@ -105,9 +105,9 @@ def sim_an(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
             old_costs = new_costs
         else:
             revert_changes(swapped_state)
-        if old_costs < lowest_cost:
-            lowest_cost = old_costs
-            lowest_map = copy.deepcopy(map)
+        #if old_costs < lowest_cost:
+         #   lowest_cost = old_costs
+          #  lowest_map = copy.deepcopy(map)
     '''print(temperature)
     print(lowest_cost)
     print(old_costs)

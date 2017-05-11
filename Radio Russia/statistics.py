@@ -18,19 +18,18 @@ algos = {sim_an_search.sigmoidal_temperature:[],sim_an_search.sigmoidal_temperat
          sim_an_search.double_sigmoidal_temperature:[], sim_an_search.sinus_double_sigmoidal_temperature:[],
          sim_an_search.sinus_temperature:[], sim_an_search.linear_temperature:[], sim_an_search.sinus_linear_temperature:[]}
 
-with open("statsfile.txt", 'w') as text:
-    for heat in algos:
-        text.write(str(heat))
+with open("sinsigmoid.txt", 'w') as text:
+    text.write('sinus_sigmoidal_temperature')
+    text.write(',')
+    for x in range(loops):
+        map = readMap.read_complete_map("UnitedStatesdfs.txt")
+        sim_an_search.stats_climber(map, costs, signals, 200000, 5, 0.01, sim_an_search.sinus_sigmoidal_temperature)
+        freq = analyse.signal_frequentie(map)
+        hill_costs = analyse.get_cost(freq, costs)
+        text.write(str(hill_costs))
         text.write(',')
-        for x in range(loops):
-            map = readMap.read_complete_map("UnitedStatesdfs.txt")
-            sim_an_search.stats_climber(map, costs, signals, 200000, 5, 0.01, heat)
-            freq = analyse.signal_frequentie(map)
-            hill_costs = analyse.get_cost(freq, costs)
-            algos[heat].append(hill_costs)
-            text.write(str(hill_costs))
-            text.write(',')
-        text.write('\n')
+        print(str(x))
+    text.write('\n')
 
 
 

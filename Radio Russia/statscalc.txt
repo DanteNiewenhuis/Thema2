@@ -1,0 +1,8 @@
+<function sigmoidal_temperature at 0x7fc02d620d08>: avg: 977.42 - low: 965 - high: 1001
+<function sigmoidal_temperature_2 at 0x7fc02d620d90>: avg: 976.81 - low: 966 - high: 998
+<function sigmoidal_temperature_3 at 0x7fc02d620e18>: avg: 975.91 - low: 967 - high: 1000
+<function double_sigmoidal_temperature at 0x7fc02d620ea0>: avg: 976.11 - low: 967 - high: 993
+<function sinus_double_sigmoidal_temperature at 0x7fc02d62c0d0>: avg: 975.88 - low: 966 - high: 998
+<function sinus_temperature at 0x7fc02d62c158>: avg: 978.19 - low: 966 - high: 1006
+<function linear_temperature at 0x7fc02d620c80>: avg: 975.39 - low: 966 - high: 993
+<function sinus_linear_temperature at 0x7fc02d62c048>: avg: 975.81 - low: 966 - high: 998
