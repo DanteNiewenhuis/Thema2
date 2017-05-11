@@ -4,6 +4,7 @@ from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import Polygon
 import matplotlib.patches as mpatches
 import analyse
+import numpy as np
 
 def draw_america(input, signal_costs):
     font1 = FontProperties()
@@ -71,4 +72,18 @@ def draw_america(input, signal_costs):
             transform=ax.transAxes,
             backgroundcolor="white",
             fontproperties=font1)
+    plt.show()
+
+#based on https://pythonspot.com/en/matplotlib-bar-chart/
+def bar_plot(dict, title, x_label, y_label):
+    objects = (dict.keys())
+    y_pos = np.arange(len(objects))
+    performance = [dict[x] for x in objects]
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel(y_label)
+    plt.xlabel(x_label)
+    plt.title(title, fontsize=20)
+
     plt.show()
