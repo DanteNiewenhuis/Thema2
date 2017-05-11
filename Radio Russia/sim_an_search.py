@@ -82,47 +82,15 @@ def sinusception_temperature(begin, end, n, x):
         temperature = end
     return temperature
 
-def hill_climber(map, costs, signals, n, begin_temp, end_temp):
-    plot = []
-    freq = analyse.signal_frequentie(map)
-    old_costs = analyse.get_cost(freq, costs)
-    lowest_cost = old_costs
-    lowest_map = copy.deepcopy(map)
-    for x in range(n):
-        temperature = sinus_double_sigmoidal_temperature(begin_temp, end_temp, n, x)
-        #plot.append(old_costs)
-        swapped_state = swap_state(map, signals)
-        new_freq = analyse.signal_frequentie(map)
-        new_costs = analyse.get_cost(new_freq, costs)
-        improvement = old_costs - new_costs
-        try:
-            chance = math.exp(improvement/temperature)
-        except OverflowError:
-            chance = 0
-        if random.random() < chance:
-            old_costs = new_costs
-        else:
-            revert_changes(swapped_state)
-        if old_costs < lowest_cost:
-            lowest_cost = old_costs
-            lowest_map = copy.deepcopy(map)
-    '''print(temperature)
-    print(lowest_cost)
-    print(old_costs)
-    plt.plot(plot)
-    plt.ylabel('costs')
-    plt.xlabel('iteraties')
-    plt.axis([-100,210000,900,1350])
-    plt.show()'''
-    return lowest_map
-
-def stats_climber(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
+def sim_an(map, costs, signals, n, begin_temp, end_temp, heatalgorithm):
     #plot = []
+    map_list = []
     freq = analyse.signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
     lowest_cost = old_costs
     lowest_map = copy.deepcopy(map)
     for x in range(n):
+        map_list.append(map)
         temperature = heatalgorithm(begin_temp, end_temp, n, x)
         #plot.append(old_costs)
         swapped_state = swap_state(map, signals)

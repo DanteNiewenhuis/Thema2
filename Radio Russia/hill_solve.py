@@ -22,8 +22,8 @@ def hill_climber(map, costs, signals):
     old_costs = analyse.get_cost(freq, costs)
     counter = 0
     for x in range(200000):
-        if counter == 400:
-            break
+        #if counter == 400:
+        #    break
         counter += 1
         plot.append(old_costs)
         numbers.append(x)
