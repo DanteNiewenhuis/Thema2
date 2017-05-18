@@ -53,15 +53,15 @@ def find_state(name, states):
         if(state.code == name):
             return state
 
-def read_complete_map(name):
+def read_complete_map(data):
     map = []
-    with open(name, 'r') as text:
+    with open(data, 'r') as text:
         for line in text:
             split_line = line.split(',')
             x = State.State(split_line[0],split_line[1])
             x.signal = split_line[2]
             map.append(x)
-    with open(name, 'r') as text:
+    with open(data, 'r') as text:
         for line in text:
             split_line = line.split(',')
             for adj in split_line[3:-1]:

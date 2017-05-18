@@ -1,15 +1,12 @@
-import readMap
-import dfs
-import hill_solve
-import draw
-import sim_an_search
 import analyse
-import copy
+import sim_an_search
+import readMap
+import hill_solve
 
-for x in [1,2,3,4]:
-    map = readMap.read_empty_map('New_Russia')
-    signal_costs = analyse.get_cost_scheme(x)
-    signals = list(signal_costs.keys())
-    dfs.dfs(map, signals)
-    sim_an_search.sim_an(map, signal_costs, signals, 2000, 5, 0.001)
-    analyse.print_costs(map, signal_costs, print_before=str(x)+ ' = ')
+map = readMap.read_complete_map('UnitedStatesdfs.txt')
+
+signal_costs = analyse.get_cost_scheme(4)
+signals = list(signal_costs.keys())
+#hill_solve.hill_climber(map, signal_costs, signals)
+sim_an_search.sim_an(map, signal_costs, signals, 200000, 10, 0.01)
+analyse.print_costs(map, signal_costs)

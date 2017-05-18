@@ -1,4 +1,4 @@
-def signal_frequentie(map):
+def analyse_signal_frequentie(map):
     result = {}
     for state in map:
         if state.signal == 0:
@@ -44,6 +44,29 @@ def get_cost_scheme(number):
     return switcher.get(number, 'please give a scheme between 1 and 4')
 
 def print_costs(map, signal_costs, print_before='', print_after=''):
-    freq = signal_frequentie(map)
+    freq = analyse_signal_frequentie(map)
+    for signal in freq:
+        print (str(signal) + ' = ' + str(freq[signal]))
     costs = get_cost(freq, signal_costs)
     print(str(print_before) + str(costs) + str(print_after))
+
+def get_weight(scheme):
+    sum = 0
+    for cost in list(scheme.keys()):
+        sum += scheme[cost]
+    weights = []
+    for cost in list(scheme.keys()):
+        x = scheme[cost]
+        y = x / sum
+        weights.append(1 / y)
+    sum_2 = 0
+    for weight in weights:
+        sum_2 += weight
+    weights_2 = []
+    for weight in weights:
+        weights_2.append(weight / sum_2)
+    signals = list(scheme.keys())
+    weight_dict = {}
+    for x in range(len(signals)):
+        weight_dict[signals[x]] = weights_2[x]
+    return weight_dict

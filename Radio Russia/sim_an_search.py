@@ -3,18 +3,33 @@ import dfs
 import analyse
 import math
 import copy
+import draw
+from numpy.random import choice
 
 def revert_changes(swapped_state):
     state = swapped_state[0]
     state.signal = swapped_state[1]
 
-def swap_state(map, signals):
+def swap_state(map, signals, weight):
     swapped_state = random.choice(map)
     old_signal = swapped_state.signal
     possible_signals = dfs.possible_signals(signals, swapped_state)
-    new_signal = random.choice(possible_signals)
+    final_weight = get_weight(possible_signals, weight)
+    new_signal = choice(possible_signals, p=final_weight)
     swapped_state.signal = new_signal
     return [swapped_state, old_signal]
+
+def get_weight(possible_signals, weight_dic):
+    new_weight = []
+    for signal in possible_signals:
+        new_weight.append(weight_dic[signal])
+    sum = 0
+    for weight in new_weight:
+        sum += weight
+    final_weight = []
+    for weight in new_weight:
+        final_weight.append(weight/sum)
+    return final_weight
 
 def linear_temperature(begin, end, n ,x):
     diff = begin-end
@@ -81,19 +96,20 @@ def sinusception_temperature(begin, end, n, x):
         temperature = end
     return temperature
 
-def sim_an(map, costs, signals, n, begin_temp, end_temp, heatalgorithm=linear_temperature):
-    #plot = []
+def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgorithm=linear_temperature):
+    plot = []
     map_list = []
-    freq = analyse.signal_frequentie(map)
+    freq = analyse.analyse_signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
+    weight = analyse.get_weight(costs)
     #lowest_cost = old_costs
     #lowest_map = copy.deepcopy(map)
     for x in range(n):
         map_list.append(map)
         temperature = heatalgorithm(begin_temp, end_temp, n, x)
-        #plot.append(old_costs)
-        swapped_state = swap_state(map, signals)
-        new_freq = analyse.signal_frequentie(map)
+        plot.append(old_costs)
+        swapped_state = swap_state(map, signals, weight)
+        new_freq = analyse.analyse_signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
         improvement = old_costs - new_costs
         try:
@@ -107,5 +123,5 @@ def sim_an(map, costs, signals, n, begin_temp, end_temp, heatalgorithm=linear_te
         #if old_costs < lowest_cost:
          #   lowest_cost = old_costs
           #  lowest_map = copy.deepcopy(map)
-    #draw.line_plot(plot)
+    draw.line_plot(plot)
     return map
