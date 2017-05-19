@@ -36,3 +36,15 @@ def hill_climber(map, costs, signals, iterations=10000):
             revert_changes(swapped_state)
     draw.line_plot(plot)
     return map
+
+def random_walker(map, costs, signals, iterations=10000):
+    plot = []
+    freq = analyse.analyse_signal_frequentie(map)
+    old_costs = analyse.get_cost(freq, costs)
+    for x in range(iterations):
+        plot.append(old_costs)
+        swapped_state = swap_state(map, signals)
+        new_freq = analyse.analyse_signal_frequentie(map)
+        old_costs = analyse.get_cost(new_freq, costs)
+    draw.line_plot(plot)
+    return map

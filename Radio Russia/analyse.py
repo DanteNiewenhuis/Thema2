@@ -45,8 +45,9 @@ def get_cost_scheme(number):
 
 def print_costs(map, signal_costs, print_before='', print_after=''):
     freq = analyse_signal_frequentie(map)
-    for signal in freq:
-        print (str(signal) + ' = ' + str(freq[signal]))
+    for signal in list(signal_costs.keys()):
+        if signal in freq:
+            print(str(signal) + ' = ' + str(freq[signal]))
     costs = get_cost(freq, signal_costs)
     print(str(print_before) + str(costs) + str(print_after))
 

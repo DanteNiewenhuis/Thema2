@@ -8,6 +8,15 @@ def possible_signals(signals, state):
             result.remove(adjacent_state.signal)
     return result
 
+def possible_signals_2(signals, state):
+    result = copy.deepcopy(signals)
+    for adjacent_state in state.adjacent_states:
+        if adjacent_state.signal in result:
+            result.remove(adjacent_state.signal)
+    if len(result) is not 1:
+        result.remove(state.signal)
+    return result
+
 def find_next(map):
     for state in map:
         if state.signal == 0:

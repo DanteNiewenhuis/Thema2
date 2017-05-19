@@ -13,7 +13,7 @@ def revert_changes(swapped_state):
 def swap_state(map, signals, weight):
     swapped_state = random.choice(map)
     old_signal = swapped_state.signal
-    possible_signals = dfs.possible_signals(signals, swapped_state)
+    possible_signals = dfs.possible_signals_2(signals, swapped_state)
     final_weight = get_weight(possible_signals, weight)
     new_signal = choice(possible_signals, p=final_weight)
     swapped_state.signal = new_signal
