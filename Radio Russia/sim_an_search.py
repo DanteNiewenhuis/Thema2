@@ -97,7 +97,7 @@ def sinusception_temperature(begin, end, n, x):
     return temperature
 
 def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgorithm=linear_temperature):
-    plot = []
+    #plot = []
     map_list = []
     freq = analyse.analyse_signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
@@ -107,7 +107,7 @@ def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgor
     for x in range(n):
         map_list.append(map)
         temperature = heatalgorithm(begin_temp, end_temp, n, x)
-        plot.append(old_costs)
+        #plot.append(old_costs)
         swapped_state = swap_state(map, signals, weight)
         new_freq = analyse.analyse_signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
@@ -123,5 +123,5 @@ def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgor
         #if old_costs < lowest_cost:
          #   lowest_cost = old_costs
           #  lowest_map = copy.deepcopy(map)
-    draw.line_plot(plot)
+    #draw.line_plot(plot)
     return map
