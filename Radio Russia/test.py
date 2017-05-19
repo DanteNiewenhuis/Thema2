@@ -1,13 +1,12 @@
-import readMap
-import dfs
-import draw
+import analyse
 import sim_an_search
+import readMap
+import hill_solve
 
-map = readMap.readStates('UnitedStates.txt')
+map = readMap.read_complete_('UnitedStatesdfs.txt')
 
-signals = ['zA', 'zB', 'zC', 'zD', 'zE', 'zF', 'zG']
-signal_costs = {'zA':19, 'zB':20, 'zC':21, 'zD':23, 'zE':36, 'zF':37, 'zG':38}
-
-dfs.dfs(map, signals)
-sim_an_search.hill_climber(map, signal_costs, signals, 200000, 3, 0.001)
-draw.draw_america(map, signal_costs)
+signal_costs = analyse.get_cost_scheme(4)
+signals = list(signal_costs.keys())
+hill_solve.random_walker(map, signal_costs, signals, iterations=1000)
+#sim_an_search.sim_an(map, signal_costs, signals, 200000, 10, 0.1)
+#analyse.print_costs(map, signal_costs)

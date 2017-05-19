@@ -2,20 +2,34 @@ import random
 import dfs
 import analyse
 import math
-import matplotlib.pyplot as plt
 import copy
+import draw
+from numpy.random import choice
 
 def revert_changes(swapped_state):
     state = swapped_state[0]
     state.signal = swapped_state[1]
 
-def swap_state(map, signals):
+def swap_state(map, signals, weight):
     swapped_state = random.choice(map)
     old_signal = swapped_state.signal
-    possible_signals = dfs.possible_signals(signals, swapped_state)
-    new_signal = random.choice(possible_signals)
+    possible_signals = dfs.possible_signals_2(signals, swapped_state)
+    final_weight = get_weight(possible_signals, weight)
+    new_signal = choice(possible_signals, p=final_weight)
     swapped_state.signal = new_signal
     return [swapped_state, old_signal]
+
+def get_weight(possible_signals, weight_dic):
+    new_weight = []
+    for signal in possible_signals:
+        new_weight.append(weight_dic[signal])
+    sum = 0
+    for weight in new_weight:
+        sum += weight
+    final_weight = []
+    for weight in new_weight:
+        final_weight.append(weight/sum)
+    return final_weight
 
 def linear_temperature(begin, end, n ,x):
     diff = begin-end
@@ -23,6 +37,16 @@ def linear_temperature(begin, end, n ,x):
     return temperature
 
 def sigmoidal_temperature(begin, end, n, x):
+    a = (1/n) * math.log(begin/end)
+    temperature = begin * math.exp(-a*x)
+    return temperature
+
+def sigmoidal_temperature_2(begin, end, n, x):
+    a = (1/(n**2)) * math.log(begin/end)
+    temperature = begin * math.exp(-a*(x**2))
+    return temperature
+
+def sigmoidal_temperature_3(begin, end, n, x):
     a = (1/(n**3)) * math.log(begin/end)
     temperature = begin * math.exp(-a*(x**3))
     return temperature
@@ -40,7 +64,7 @@ def double_sigmoidal_temperature(begin, end, n, x):
     return temperature
 
 def sinus_sigmoidal_temperature(begin, end, n, x):
-    temperature = sigmoidal_temperature(begin, end, n, x)
+    temperature = sigmoidal_temperature_3(begin, end, n, x)
     temperature += begin * 0.05 * math.sin(1/800*x)
     if temperature < 0:
         temperature = end
@@ -66,23 +90,26 @@ def sinus_temperature(begin, end, n, x):
 
 def sinusception_temperature(begin, end, n, x):
     temperature = sinus_temperature(begin, end, n, x)
-    temperature += begin * 0.2 * math.sin(1/400*x)
-    temperature += begin * 0.05 * math.sin(1 / 800 * x)
+    temperature += begin * 0.2 * math.sin(1/400 * x)
+    temperature += begin * 0.05 * math.sin(1/800 * x)
     if temperature < 0:
         temperature = end
     return temperature
 
-def hill_climber(map, costs, signals, n, begin_temp, end_temp):
-    plot = []
-    freq = analyse.signal_frequentie(map)
+def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgorithm=linear_temperature):
+    #plot = []
+    map_list = []
+    freq = analyse.analyse_signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
-    lowest_cost = old_costs
-    lowest_map = copy.deepcopy(map)
+    weight = analyse.get_weight(costs)
+    #lowest_cost = old_costs
+    #lowest_map = copy.deepcopy(map)
     for x in range(n):
-        temperature = double_sigmoidal_temperature(begin_temp, end_temp, n, x)
-        plot.append(old_costs)
-        swapped_state = swap_state(map, signals)
-        new_freq = analyse.signal_frequentie(map)
+        map_list.append(map)
+        temperature = heatalgorithm(begin_temp, end_temp, n, x)
+        #plot.append(old_costs)
+        swapped_state = swap_state(map, signals, weight)
+        new_freq = analyse.analyse_signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
         improvement = old_costs - new_costs
         try:
@@ -93,14 +120,8 @@ def hill_climber(map, costs, signals, n, begin_temp, end_temp):
             old_costs = new_costs
         else:
             revert_changes(swapped_state)
-        if old_costs < lowest_cost:
-            lowest_cost = old_costs
-            lowest_map = copy.deepcopy(map)
-    print(temperature)
-    print(lowest_cost)
-    print(old_costs)
-    plt.plot(plot)
-    plt.ylabel('temp')
-    plt.xlabel('iteraties')
-    plt.show()
-    return lowest_map
+        #if old_costs < lowest_cost:
+         #   lowest_cost = old_costs
+          #  lowest_map = copy.deepcopy(map)
+    #draw.line_plot(plot)
+    return map

@@ -4,6 +4,7 @@ from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import Polygon
 import matplotlib.patches as mpatches
 import analyse
+import numpy as np
 
 def draw_america(input, signal_costs):
     font1 = FontProperties()
@@ -71,4 +72,41 @@ def draw_america(input, signal_costs):
             transform=ax.transAxes,
             backgroundcolor="white",
             fontproperties=font1)
+    plt.show()
+
+#based on https://pythonspot.com/en/matplotlib-bar-chart/
+def bar_plot(dict, x_begin='x', x_end='x',x_label='x-as', y_label='y-as', title='title'):
+    objects = (dict.keys())
+    if x_begin == 'x':
+        x_begin = min(objects)
+    if x_end == 'x':
+        x_end = max(objects) + 1
+    y_pos = np.arange(x_begin, x_end)
+    performance = []
+    for x in range(x_begin, x_end):
+        if x in dict:
+            performance.append(dict[x])
+        else:
+            performance.append(0)
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, y_pos)
+    plt.ylabel(y_label)
+    plt.xlabel(x_label)
+    plt.title(title, fontsize=20)
+
+    plt.show()
+
+def line_plot(list, x_label='x-as', y_label='y-as', title='title', y_min='x', y_max='x', x_max='x', x_min=0):
+    plt.plot(list)
+    plt.ylabel(y_label)
+    plt.xlabel(x_label)
+    plt.title(title, fontsize=20)
+    if y_min == 'x':
+        y_min = min(list) - 0.1*min(list)
+    if y_max == 'x':
+        y_max = max(list) + 0.1 * max(list)
+    if x_max == 'x':
+        x_max = len(list) + 0.1 * len(list)
+    plt.axis([x_min, x_max, y_min, y_max])
     plt.show()

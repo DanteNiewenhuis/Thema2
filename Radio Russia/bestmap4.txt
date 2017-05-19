@@ -1,0 +1,48 @@
+Washington,s1,zA
+Oregon,s2,zB
+California,s3,zC
+Nevada,s4,zA
+Idaho,s5,zC
+Utah,s6,zB
+Arizona,s7,zD
+Montana,s8,zB
+Wyoming,s9,zA
+Colorado,s10,zC
+New Mexico,s11,zA
+North Dakota,s12,zA
+South Dakota,s13,zD
+Nebraska,s14,zB
+Kansas,s15,zA
+Oklahoma,s16,zB
+Texas,s17,zD
+Minnesota,s18,zB
+Iowa,s19,zC
+Missouri,s20,zD
+Arkansas,s21,zC
+Louisiana,s22,zA
+Wisconsin,s23,zA
+Illinois,s24,zB
+Kentucky,s25,zC
+Tennessee,s26,zA
+Mississippi,s27,zB
+Michigan,s28,zC
+Indiana,s29,zA
+Ohio,s30,zB
+Alabama,s31,zC
+Florida,s32,zA
+West Virginia,s33,zD
+Virginia,s34,zB
+North Carolina,s35,zC
+South Carolina,s36,zA
+Georgia,s37,zB
+Maine,s38,zA
+New Hampshire,s39,zB
+Vermont,s40,zA
+New York,s41,zB
+Massachusetts,s42,zC
+Connecticut,s43,zD
+Rhode Island,s44,zA
+New Jersey,s45,zA
+Pennsylvania,s46,zC
+Delaware,s47,zB
+Maryland,s48,zA
