@@ -45,7 +45,7 @@ def reorder_possible_signals(possible_signal, amount_dic):
     return result
 
 def dfs(map, signals):
-    amount_dic = analyse.signal_frequentie(map)
+    amount_dic = analyse.analyse_signal_frequentie(map)
     state = find_next(map)
     if state == 0:
         return True

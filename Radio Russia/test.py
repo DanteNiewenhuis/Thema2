@@ -3,7 +3,7 @@ import sim_an_search
 import readMap
 import hill_solve
 
-map = readMap.read_complete_map('UnitedStatesdfs.txt')
+map = readMap.read_complete_('UnitedStatesdfs.txt')
 
 signal_costs = analyse.get_cost_scheme(4)
 signals = list(signal_costs.keys())
