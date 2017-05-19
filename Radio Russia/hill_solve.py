@@ -34,6 +34,7 @@ def hill_climber(map, costs, signals):
     plt.plot(plot)
     plt.ylabel('kosten')
     plt.xlabel('iteraties')
+    plt.axis([0,1000,400,1000])
     plt.show()
     '''
     return map

@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 def signal_frequentie(map):
     result = {}
     for state in map:
@@ -43,3 +46,32 @@ def get_frequencies_costs(list):
         else:
             dic[cost] = 1
     return dic
+
+
+def bar_plot(dic):
+    objects = sorted(dic.keys())
+    performance = []
+    for x in range(650, 850):
+        if x in objects:
+            performance.append(dic[x])
+        else:
+            performance.append(0)
+
+
+    y_pos = np.arange(650, 850)
+    width = 1
+
+    ax = plt.subplot(111)
+    ax.bar(y_pos + width, performance)
+
+    # Hide the right and top spines
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+
+    # Only show ticks on the left and bottom spines
+    ax.yaxis.set_ticks_position('left')
+    ax.xaxis.set_ticks_position('bottom')
+
+    ax.set_xticklabels([])
+    ax.set_xticks(y_pos + width / 2)
+    plt.show()
