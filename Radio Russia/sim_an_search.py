@@ -2,8 +2,8 @@ import random
 import dfs
 import analyse
 import math
-import copy
-import draw
+#import copy
+#import draw
 from numpy.random import choice
 
 def revert_changes(swapped_state):
