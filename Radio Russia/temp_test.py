@@ -15,7 +15,8 @@ for x in range(1,31):
         freq = analyse.analyse_signal_frequentie(map)
         costs = analyse.get_cost(freq, signal_costs)
         costs_list.append(costs)
-    print(x)
+        print(costs)
+    print('number = '+ str(x))
     with open('costs_stats_scheme' + s, 'a') as text:
         text.write(str(x))
         text.write(',')

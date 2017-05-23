@@ -3,7 +3,7 @@ import dfs
 import analyse
 import math
 #import copy
-import draw
+#import draw
 
 from numpy.random import choice
 
