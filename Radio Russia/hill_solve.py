@@ -24,10 +24,10 @@ def hill_climber(map, costs, signals, iterations=10000):
         #if counter == 400:
         #    break
         #counter += 1
-        plot.append(old_costs)
         swapped_state = swap_state(map, signals)
         new_freq = analyse.analyse_signal_frequentie(map)
         new_costs = analyse.get_cost(new_freq, costs)
+        plot.append(old_costs)
         if new_costs <= old_costs:
             if new_costs < old_costs:
                 counter = 0
@@ -46,5 +46,5 @@ def random_walker(map, costs, signals, iterations=10000):
         swapped_state = swap_state(map, signals)
         new_freq = analyse.analyse_signal_frequentie(map)
         old_costs = analyse.get_cost(new_freq, costs)
-    draw.line_plot(plot)
+    draw.line_plot(plot, y_min=2000, y_max=2600)
     return map

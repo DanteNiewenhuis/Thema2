@@ -1,6 +1,5 @@
 import analyse
 import readMap
-import random
 import sim_an_search
 
 s = '3'

@@ -3,7 +3,8 @@ import dfs
 import analyse
 import math
 #import copy
-#import draw
+import draw
+
 from numpy.random import choice
 
 def revert_changes(swapped_state):
@@ -96,17 +97,17 @@ def sinusception_temperature(begin, end, n, x):
         temperature = end
     return temperature
 
-def sim_an(map, costs, signals, n=200000, begin_temp=5, end_temp=0.01, heatalgorithm=linear_temperature):
+def sim_an(map, costs, signals, iterations=200000, begin_temp=5, end_temp=0.01, heatalgorithm=linear_temperature):
     #plot = []
-    map_list = []
+    #map_list = []
     freq = analyse.analyse_signal_frequentie(map)
     old_costs = analyse.get_cost(freq, costs)
     weight = analyse.get_weight(costs)
     #lowest_cost = old_costs
     #lowest_map = copy.deepcopy(map)
-    for x in range(n):
-        map_list.append(map)
-        temperature = heatalgorithm(begin_temp, end_temp, n, x)
+    for x in range(iterations):
+        #map_list.append(map)
+        temperature = heatalgorithm(begin_temp, end_temp, iterations, x)
         #plot.append(old_costs)
         swapped_state = swap_state(map, signals, weight)
         new_freq = analyse.analyse_signal_frequentie(map)
