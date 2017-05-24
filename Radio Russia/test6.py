@@ -1,6 +1,6 @@
 s_l = []
 bl = []
-with open('newbestmap4.txt', 'r') as text:
+with open('tempstats.txt', 'r') as text:
     for line in text:
         s_l = line.split(',')
     for token in s_l:
