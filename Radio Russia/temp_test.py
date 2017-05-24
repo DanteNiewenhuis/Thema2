@@ -2,12 +2,12 @@ import analyse
 import readMap
 import sim_an_search
 
-s = '3'
+s = '5'
 signal_costs = analyse.get_cost_scheme(int(s))
 signals = list(signal_costs.keys())
 
 
-for x in range(20, 31):
+for x in range(23, 31):
     costs_list = []
     for y in range(20):
         map = readMap.read_complete_map('Russiadfs.txt')
