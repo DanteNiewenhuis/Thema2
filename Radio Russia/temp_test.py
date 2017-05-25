@@ -17,7 +17,7 @@ for x in range(23, 31):
         costs_list.append(costs)
         print(costs)
     print('number = '+ str(x))
-    with open('costs_stats_scheme3b', 'a') as text:
+    with open('costs_stats_scheme' + s, 'a') as text:
         text.write(str(x))
         text.write(',')
         for cost in costs_list:
