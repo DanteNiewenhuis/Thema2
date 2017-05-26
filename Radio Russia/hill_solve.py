@@ -40,5 +40,5 @@ def random_walker(map, costs, signals, iterations=10000):
         swapped_state = swap_state(map, signals)
         new_freq = analyse.analyse_signal_frequentie(map)
         old_costs = analyse.get_cost(new_freq, costs)
-    draw.line_plot(plot, y_min=2000, y_max=2600)
-    return map
+    #draw.line_plot(plot, y_min=2000, y_max=2600)
+    return plot
