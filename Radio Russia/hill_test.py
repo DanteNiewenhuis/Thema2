@@ -3,7 +3,7 @@ import readMap
 import hill_solve
 
 
-for x in range(1, 5):
+for x in range(6, 13):
     signal_costs = analyse.get_cost_scheme(int(x))
     signals = list(signal_costs.keys())
     costs_list = []

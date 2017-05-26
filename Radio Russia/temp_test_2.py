@@ -2,12 +2,13 @@ import analyse
 import readMap
 import sim_an_search
 
-for s in ['12', '13']:
+for s in ['18']:
     signal_costs = analyse.get_cost_scheme(int(s))
     signals = list(signal_costs.keys())
 
     print('s = ' + s)
-    for x in range(5, 31):
+    for x in range(1, 31):
+        print('temperature = ' + str(x))
         costs_list = []
         for y in range(20):
             map = readMap.read_complete_map('Russiadfs.txt')
@@ -16,7 +17,6 @@ for s in ['12', '13']:
             costs = analyse.get_cost(freq, signal_costs)
             costs_list.append(costs)
             print(costs)
-        print('number = '+ str(x))
         with open('costs_stats_scheme' + s, 'a') as text:
             text.write(str(x))
             text.write(',')
