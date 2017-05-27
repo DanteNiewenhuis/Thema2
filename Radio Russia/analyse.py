@@ -49,6 +49,9 @@ def get_cost_scheme(number):
         11: {'zA': 1, 'zB': 61, 'zC': 62, 'zD': 63, 'zE': 64, 'zF': 65, 'zG': 66},
         12: {'zA': 3001, 'zB': 3002, 'zC': 3003, 'zD': 3004, 'zE': 3005, 'zF': 3006, 'zG': 3007},
         13: {'zA': 3001, 'zB': 3052, 'zC': 3053, 'zD': 3054, 'zE': 3055, 'zF': 3056, 'zG': 3057},
+        19: {'zA': 10, 'zB': 11, 'zC': 12, 'zD': 13, 'zE': 14, 'zF': 15, 'zG': 56},
+        20: {'zA': 10, 'zB': 11, 'zC': 12, 'zD': 13, 'zE': 14, 'zF': 35, 'zG': 56},
+        21: {'zA': 11, 'zB': 12, 'zC': 13, 'zD': 14, 'zE': 15, 'zF': 16, 'zG': 17},
     }
     return switcher.get(number, 'please give a scheme between 1 and 4')
 
