@@ -35,7 +35,7 @@ def draw_america(input, signal_costs):
                 ax.add_patch(poly)
                 break
 
-    freq = analyse.signal_frequentie(input)
+    freq = analyse.analyse_signal_frequentie(input)
     spacing = {}
     for signal in color_dict:
         if signal not in freq:
@@ -72,6 +72,39 @@ def draw_america(input, signal_costs):
             transform=ax.transAxes,
             backgroundcolor="white",
             fontproperties=font1)
+    plt.show()
+
+def draw_america_2(input, signal_costs):
+    font1 = FontProperties()
+    font1.set_family('monospace')
+    font1.set_size(14)
+    map = Basemap(resolution='i',  # c, l, i, h, f or None
+                projection='mill',
+                llcrnrlon = -125.5, llcrnrlat = 24,
+                urcrnrlon = -66, urcrnrlat = 50)
+
+    map.drawmapboundary(fill_color='#46bcec')
+    map.drawcountries(linewidth=1)
+    map.fillcontinents(color='white')
+
+    map.readshapefile('st99_d00', name='states', drawbounds=True)
+    state_names = []
+    for shape_dict in map.states_info:
+        state_names.append(shape_dict['NAME'])
+
+    ax = plt.gca() # get current axes instance
+
+    color_dict = {'zA':'red', 'zB':'blue', 'zC':'yellow', 'zD':'green', 'zE':'pink', 'zF':'cyan', 'zG':'orange'}
+    for nshape, seg in enumerate(map.states):
+        for state in input:
+            if state_names[nshape] == state.name:
+                color = color_dict[state.signal]
+                poly = Polygon(seg, facecolor=color)
+                ax.add_patch(poly)
+                break
+
+    freq = analyse.analyse_signal_frequentie(input)
+
     plt.show()
 
 #based on https://pythonspot.com/en/matplotlib-bar-chart/

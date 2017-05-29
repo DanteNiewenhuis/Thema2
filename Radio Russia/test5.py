@@ -1,18 +1,15 @@
 import readMap
-import draw
+import dfs
 import analyse
+import sim_an_search
 
-map = readMap.read_complete_animation('testanimate.txt')
+map = readMap.read_empty_map('NewChina.txt')
 
+signal_cost = analyse.get_cost_scheme(4)
 signals = ['zA', 'zB', 'zC', 'zD', 'zE', 'zF', 'zG']
-signal_costs = {'zA':19, 'zB':20, 'zC':21, 'zD':23, 'zE':36, 'zF':37, 'zG':38}
+dfs.dfs(map, signals)
+sim_an_search.sim_an(map, signal_cost, signals, begin_temp=10)
 
-
-freq = analyse.signal_frequentie(map[0])
-costs = analyse.get_cost(freq, signal_costs)
-
-for signal in freq:
-    print(str(signal) + ' = ' + str(freq[signal]))
-
-print(costs)
-draw.draw_america(map[0], signal_costs)
+analyse.print_costs(map, signal_cost)
+print(analyse.analyse_conflicts(map))
+print(analyse.analyse_adjacent_states(map))
