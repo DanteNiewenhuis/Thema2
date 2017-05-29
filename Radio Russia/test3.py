@@ -1,16 +1,22 @@
 import readMap
-import draw
 import analyse
 import dfs
 import hill_solve
 
-map = readMap.read_complete_map('best_map_america_2.txt')
+map = readMap.read_empty_map('Russia.txt')
 
-signals = ['zA', 'zB', 'zC', 'zD', 'zE', 'zF', 'zG']
-signal_costs = {'zA':19, 'zB':20, 'zC':21, 'zD':23, 'zE':36, 'zF':37, 'zG':38}
-hill_solve.hill_climber(map, signal_costs, signals)
-freq = analyse.signal_frequentie(map)
-for signal in freq:
-    print(str(signal) + ' = ' + str(freq[signal]))
-old_costs = analyse.get_cost(freq, signal_costs)
-print(old_costs)
+signals = ['zA', 'zB', 'zC', 'zD']
+dfs.dfs(map, signals)
+
+with open('Russiadfs4.csv', 'w') as text:
+    for state in map:
+        text.write(str(state.name))
+        text.write(',')
+        text.write(str(state.code))
+        text.write(',')
+        text.write(str(state.signal))
+        text.write(',')
+        for adj in state.adjacent_states:
+            text.write(str(adj))
+            text.write(',')
+        text.write('\n')

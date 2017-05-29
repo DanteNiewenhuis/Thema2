@@ -1,28 +1,15 @@
 import readMap
-import dfs
-import sim_an_search
+import hill_solve
+import statistics
+import analyse
 
-map = readMap.readStates('UnitedStates.txt')
-
-signals = ['zA', 'zB', 'zC', 'zD', 'zE', 'zF', 'zG']
-signal_costs = {'zA':19, 'zB':20, 'zC':21, 'zD':23, 'zE':36, 'zF':37, 'zG':38}
-
-dfs.dfs(map, signals)
-sim_an_search.hill_climber(map, signal_costs, signals, 2000, 5, 0.001)
-
-'''
-with open('testanimate.txt','w') as text:
-    for state in map:
-        text.write(state.name)
+for x in range(1,26):
+    map = readMap.read_complete_map('Russiadfs5.csv')
+    signal_costs = analyse.get_cost_scheme(x)
+    signal = ['zA', 'zB', 'zC', 'zD', 'zE']
+    result = hill_solve.random_walker(map, signal_costs, signal)
+    with open('stats_walker_5', 'a') as text:
+        text.write(str(x))
         text.write(',')
-        text.write(state.code)
-        text.write(',')
-        text.write(state.signal)
-        text.write(',')
-        for adj in state.adjacent_states:
-            text.write(adj.name)
-            text.write(',')
-        text.write('next')
-        text.write(',')
-    text.write('\n')
-'''
+        text.write(str(round(statistics.stdev(result))))
+        text.write('\n')

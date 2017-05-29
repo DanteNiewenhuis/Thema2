@@ -56,4 +56,5 @@ def dfs(map, signals):
         checker = dfs(map, signals)
         if checker:
             return True
+    state.signal = 0
     return False
