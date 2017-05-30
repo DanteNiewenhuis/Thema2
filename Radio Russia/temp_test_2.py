@@ -2,7 +2,11 @@ import analyse
 import readMap
 import sim_an_search
 
+<<<<<<< HEAD
 for s in ['27']:
+=======
+for s in ['26']:
+>>>>>>> origin/master
     signal_costs = analyse.get_cost_scheme(int(s))
     signals = list(signal_costs.keys())
 

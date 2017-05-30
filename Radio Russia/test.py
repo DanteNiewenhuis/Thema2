@@ -1,4 +1,5 @@
 import analyse
+<<<<<<< HEAD
 
 for x in range(1, 19):
     scheme = analyse.get_cost_scheme(x)
@@ -18,3 +19,14 @@ for x in range(1, 19):
         text.write(str(scheme['zG']))
         text.write(',')
         text.write('\n')
+=======
+import draw
+import readMap
+
+
+map = readMap.read_complete_map('UnitedStatesdfs.txt')
+
+signal_costs = analyse.get_cost_scheme(4)
+draw.draw_america_2(map, signal_costs)
+
+>>>>>>> origin/master
