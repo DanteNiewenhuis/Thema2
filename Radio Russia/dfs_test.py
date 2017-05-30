@@ -2,13 +2,13 @@ import analyse
 import readMap
 import dfs
 
-map = readMap.read_empty_map('Russia.txt')
+map = readMap.read_empty_map('NewChina.txt')
 signal_costs = analyse.get_cost_scheme(4)
 signals = list(signal_costs.keys())
 dfs.dfs(map, signals)
 analyse.print_costs(map, signal_costs)
-'''
-with open('Russiadfs.txt', 'w') as text:
+
+with open('Chinadfs.txt', 'w') as text:
     for state in map:
         text.write(str(state.name))
         text.write(',')
@@ -20,4 +20,3 @@ with open('Russiadfs.txt', 'w') as text:
             text.write(str(adj))
             text.write(',')
         text.write('\n')
-'''
