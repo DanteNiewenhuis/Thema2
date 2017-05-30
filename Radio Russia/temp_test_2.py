@@ -8,6 +8,7 @@ for s in ['24','25','26']:
 
     print('s = ' + s)
     for x in range(1, 31):
+        print('temperature = ' + str(x))
         costs_list = []
         for y in range(20):
             map = readMap.read_complete_map('Russiadfs.txt')
@@ -16,7 +17,6 @@ for s in ['24','25','26']:
             costs = analyse.get_cost(freq, signal_costs)
             costs_list.append(costs)
             print(costs)
-        print('number = '+ str(x))
         with open('costs_stats_scheme' + s, 'a') as text:
             text.write(str(x))
             text.write(',')
